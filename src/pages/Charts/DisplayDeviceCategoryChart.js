@@ -82,9 +82,14 @@ class DisplayDeviceCategoryChart extends Component {
 
             let eachMonthTotal = {}
             const arrSum = arr => arr.reduce((a,b) => a + b, 0)
+            function getSameMonthElement(mon) {
+                return function(element) {
+                    return element.reportmonth === mon;
+                }
+            }
             for( var i = 0; i < monthArray.length; i++)
             {
-                const sameMonthData = arr.filter(item => item.reportmonth === monthArray[i]  )
+                const sameMonthData = arr.filter(getSameMonthElement( monthArray[i])  )
                 const sessions = sameMonthData.map(a => a.sessions);
                 const total = arrSum(sessions) 
                 console.log(total)
