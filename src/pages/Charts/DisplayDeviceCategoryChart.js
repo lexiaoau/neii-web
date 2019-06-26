@@ -5,6 +5,24 @@ import fetchJsonp from 'fetch-jsonp';
 
 import DemoPieChart from '../Charts/DemoPieChart';
 
+fakeStateData = [
+    [ {"device":"desktop","value":714,"vary":"2.77%","month":"Feb-2019"},
+        {"device":"mobile","value":114,"vary":"-4.71%","month":"Feb-2019"},
+        {"device":"tablet","value":36,"vary":"1.95%","month":"Feb-2019"}
+    ],
+    [  {"device":"desktop","value":700,"vary":"2.31%","month":"Mar-2019"},
+        {"device":"mobile","value":96,"vary":"-1.54%","month":"Mar-2019"},
+        {"device":"tablet","value":28,"vary":"-0.769%","month":"Mar-2019"}
+    ],
+    [  {"device":"desktop","value":562,"vary":"-5.24%","month":"Apr-2019"},
+        {"device":"mobile","value":102,"vary":"2.82%","month":"Apr-2019"},
+        {"device":"tablet","value":41,"vary":"2.42%","month":"Apr-2019"}],
+    [  {"device":"desktop","value":662,"vary":"8.08%","month":"May-2019"},
+        {"device":"mobile","value":68,"vary":"-5.45%","month":"May-2019"},
+        {"device":"tablet","value":24,"vary":"-2.63%","month":"May-2019"}
+    ]
+]
+
 class DisplayDeviceCategoryChart extends Component {
     constructor() {
         super()  
@@ -39,13 +57,9 @@ class DisplayDeviceCategoryChart extends Component {
             const month_names_short = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 
-
-
-
             let history = {};
             let lastMonth = '';
             let currentMonth = '';
-            let currentObj = {};
 
             let monthObj = {}
             let deviceObj = {}
@@ -59,11 +73,24 @@ class DisplayDeviceCategoryChart extends Component {
                 monthObj[monthStr] = 1
                 deviceObj[deviceStr] = 1
                 history[monthStr+deviceStr] = item.sessions
+                return item
             } )
-            // console.log(history)
 
-            let monthArray = Object.keys(monthObj).sort()
-            let deviceArray = Object.keys(deviceObj)
+            const monthArray = Object.keys(monthObj).sort()
+            console.log(monthArray)
+            const deviceArray = Object.keys(deviceObj)
+
+            let eachMonthTotal = {}
+            const arrSum = arr => arr.reduce((a,b) => a + b, 0)
+            for( var i = 0; i < monthArray.length; i++)
+            {
+                const sameMonthData = arr.filter(item => item.reportmonth === monthArray[i]  )
+                const sessions = sameMonthData.map(a => a.sessions);
+                const total = arrSum(sessions) 
+                console.log(total)
+                eachMonthTotal[monthArray[i]] = total
+            }
+            console.log(eachMonthTotal)
 
 
             for (var i = 0; i < monthArray.length; i++) {
@@ -94,10 +121,11 @@ class DisplayDeviceCategoryChart extends Component {
                             currentObj.device = deviceArray[j]
                             currentObj.value = history[ monthArray[i]+deviceArray[j] ]
 
-                            // console.log(lastMonth)
-
-                            let lastMonthValue = history[ lastMonth+deviceArray[j]  ]
-                            currentObj.vary = ( (currentObj.value - lastMonthValue)/lastMonthValue  ).toPrecision(2).toString() + '%'
+                            const lastMonthValue = history[ lastMonth+deviceArray[j]  ]
+                            const lastMonthRatio = (lastMonthValue / eachMonthTotal[lastMonth]).toPrecision(8)
+                            const currentMonthRatio = (currentObj.value / eachMonthTotal[monthArray[i]]).toPrecision(8)
+                            const diff = currentMonthRatio - lastMonthRatio 
+                            currentObj.vary = (diff*100).toPrecision(3).toString() + '%' 
                             currentObj.month = thisYearMonth
 
                             oneMonthDataArray.push(currentObj)
@@ -105,15 +133,13 @@ class DisplayDeviceCategoryChart extends Component {
                         
                         resultList.push(oneMonthDataArray)
                     }
-
-                    
                 }
             }
-            console.log(resultList)
-
             this.setState({
                 chart_data: resultList
-            })          
+            })    
+            console.log(resultList)      
+            console.log(JSON.stringify(resultList))
         }).catch(function (ex) {
             console.log('parsing failed', ex)
         })
