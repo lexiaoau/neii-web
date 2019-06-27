@@ -48,7 +48,7 @@ class SideBar extends Component {
 
 const mapStateToProps = state => ({
   // enableBackgroundImage: state.ThemeOptions.enableBackgroundImage,
-  backgroundColor: state.ThemeOptions.backgroundColor
+  // backgroundColor: state.ThemeOptions.backgroundColor
   // backgroundImage: state.ThemeOptions.backgroundImage
 });
 

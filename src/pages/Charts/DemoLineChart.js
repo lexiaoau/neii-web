@@ -50,8 +50,8 @@ class DemoLineChart extends Component {
                     <CartesianGrid strokeDasharray="3 3"/>
                     <Tooltip/>
                     <Legend />
-                    {/* <Line type="monotone" name="Sum of page views" dataKey="sumUni" stroke="#8884d8" activeDot={{r: 8}}/>                     */}
-                    <Line type="monotone" name="Sum of page views" dataKey="sumup" stroke="#8884d8" activeDot={{r: 8}}/>                    
+                    <Line type="monotone" name="Sum of page views" dataKey="sumUni" stroke="#8884d8" activeDot={{r: 8}}/>                    
+                    {/* <Line type="monotone" name="Sum of page views" dataKey="sumup" stroke="#8884d8" activeDot={{r: 8}}/>                     */}
                 </LineChart>
             </div>
         );        

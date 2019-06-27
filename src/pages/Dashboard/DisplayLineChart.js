@@ -11,36 +11,36 @@ import fetchJsonp from 'fetch-jsonp';
 
 import DemoLineChart from '../Charts/DemoLineChart';
 
-// const fakeLineChartData = [ {"ga_date": "20190401", "sumUni": 59.0},
-//   {"ga_date": "20190402", "sumUni": 36.0},
-//   {"ga_date": "20190403", "sumUni": 58.0},
-//   {"ga_date": "20190404", "sumUni": 63.0},
-//   {"ga_date": "20190405", "sumUni": 33.0},
-//   {"ga_date": "20190406", "sumUni": 21.0},
-//   {"ga_date": "20190407", "sumUni": 17.0},
-//   {"ga_date": "20190408", "sumUni": 67.0},
-//   {"ga_date": "20190409", "sumUni": 34.0},
-//   {"ga_date": "20190410", "sumUni": 40.0},
-//   {"ga_date": "20190411", "sumUni": 30.0},
-//   {"ga_date": "20190412", "sumUni": 45.0},
-//   {"ga_date": "20190413", "sumUni": 13.0},
-//   {"ga_date": "20190414", "sumUni": 14.0},
-//   {"ga_date": "20190415", "sumUni": 40.0},
-//   {"ga_date": "20190416", "sumUni": 55.0},
-//   {"ga_date": "20190417", "sumUni": 45.0},
-//   {"ga_date": "20190418", "sumUni": 59.0},
-//   {"ga_date": "20190419", "sumUni": 13.0},
-//   {"ga_date": "20190420", "sumUni": 10.0},
-//   {"ga_date": "20190421", "sumUni": 10.0},
-//   {"ga_date": "20190422", "sumUni": 13.0},
-//   {"ga_date": "20190423", "sumUni": 29.0},
-//   {"ga_date": "20190424", "sumUni": 25.0},
-//   {"ga_date": "20190425", "sumUni": 32.0},
-//   {"ga_date": "20190426", "sumUni": 45.0},
-//   {"ga_date": "20190427", "sumUni": 6.0},
-//   {"ga_date": "20190428", "sumUni": 5.0},
-//   {"ga_date": "20190429", "sumUni": 68.0},
-//   {"ga_date": "20190430", "sumUni": 61.0} ];  
+const fakeLineChartData = [ {"ga_date": "20190401", "sumUni": 59.0},
+  {"ga_date": "20190402", "sumUni": 36.0},
+  {"ga_date": "20190403", "sumUni": 58.0},
+  {"ga_date": "20190404", "sumUni": 63.0},
+  {"ga_date": "20190405", "sumUni": 33.0},
+  {"ga_date": "20190406", "sumUni": 21.0},
+  {"ga_date": "20190407", "sumUni": 17.0},
+  {"ga_date": "20190408", "sumUni": 67.0},
+  {"ga_date": "20190409", "sumUni": 34.0},
+  {"ga_date": "20190410", "sumUni": 40.0},
+  {"ga_date": "20190411", "sumUni": 30.0},
+  {"ga_date": "20190412", "sumUni": 45.0},
+  {"ga_date": "20190413", "sumUni": 13.0},
+  {"ga_date": "20190414", "sumUni": 14.0},
+  {"ga_date": "20190415", "sumUni": 40.0},
+  {"ga_date": "20190416", "sumUni": 55.0},
+  {"ga_date": "20190417", "sumUni": 45.0},
+  {"ga_date": "20190418", "sumUni": 59.0},
+  {"ga_date": "20190419", "sumUni": 13.0},
+  {"ga_date": "20190420", "sumUni": 10.0},
+  {"ga_date": "20190421", "sumUni": 10.0},
+  {"ga_date": "20190422", "sumUni": 13.0},
+  {"ga_date": "20190423", "sumUni": 29.0},
+  {"ga_date": "20190424", "sumUni": 25.0},
+  {"ga_date": "20190425", "sumUni": 32.0},
+  {"ga_date": "20190426", "sumUni": 45.0},
+  {"ga_date": "20190427", "sumUni": 6.0},
+  {"ga_date": "20190428", "sumUni": 5.0},
+  {"ga_date": "20190429", "sumUni": 68.0},
+  {"ga_date": "20190430", "sumUni": 61.0} ];  
 
 class DisplayLineChart extends Component {
     constructor() {
@@ -181,22 +181,26 @@ class DisplayLineChart extends Component {
 
             //-----------------------------------------------------
 
-            fetchJsonp(api_url, 
-            {
-                timeout: 3000,
-                jsonpCallbackFunction: 'get_neii_pageviews'                
-            })
-            .then(function (response) {
-                // console.log(response)
-                return response.json()
-            }).then( (jsonData) => {
-                this.setState({
-                    chart_data: jsonData
-                })    
-                // console.log( this.state.chart_data )           
-            }).catch(function (ex) {
-                console.log('parsing failed', ex)
-            })
+            // fetchJsonp(api_url, 
+            // {
+            //     timeout: 3000,
+            //     jsonpCallbackFunction: 'get_neii_pageviews'                
+            // })
+            // .then(function (response) {
+            //     // console.log(response)
+            //     return response.json()
+            // }).then( (jsonData) => {
+            //     this.setState({
+            //         chart_data: jsonData
+            //     })    
+            //     // console.log( this.state.chart_data )           
+            // }).catch(function (ex) {
+            //     console.log('parsing failed', ex)
+            // })
+
+            this.setState({
+                chart_data: fakeLineChartData
+            }) 
     }
 
 

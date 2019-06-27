@@ -12,7 +12,7 @@ const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = (props) => {
     const  {device, cx, cy, midAngle, innerRadius, outerRadius, percent, index } = props
     // console.log("handling label?");
-    console.log(props)
+    // console.log(props)
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x  = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy  + radius * Math.sin(-midAngle * RADIAN);
@@ -65,7 +65,7 @@ class DemoPieChart extends Component {
     render () {
         const {chartData, title} = this.props;
         thisdata = chartData
-        console.log(chartData)
+        // console.log(chartData)
 
         const pie1innerRadius = 90
         const pie1outerRadius = 160
