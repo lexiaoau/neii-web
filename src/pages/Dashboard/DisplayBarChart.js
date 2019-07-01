@@ -5,6 +5,11 @@ import fetchJsonp from 'fetch-jsonp';
 
 import DemoBarChart from '../Charts/DemoBarChart';
 
+const fakeBarChartData = [{"month":"Feb-2019","Data Viewer":418,"NEII Website":896,"total":1314},
+{"month":"Mar-2019","Data Viewer":363,"NEII Website":924,"total":1287},
+{"month":"Apr-2019","Data Viewer":286,"NEII Website":760,"total":1046},
+{"month":"May-2019","Data Viewer":322,"NEII Website":1254,"total":1576}];
+
 class DisplayBarChart extends Component {
     constructor() {
         super()  
