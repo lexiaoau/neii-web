@@ -1,4 +1,4 @@
-# NEII Web Demo
+# NEII Web Demo using React
 
 
 ## Installation
